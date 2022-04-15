@@ -29,14 +29,21 @@ const Form = ({currentId, setCurrentId}) => {
         } else {
             dispatch(createPost(postData));
         }
+        clear();
     }
 
     const clear = () => {
-
+        setCurrentId(null);
+        setPostData({
+            creator: '',
+            title: '',
+            message: '',
+            tags: '',
+            selectedFile: ''
+        });
     }
 
     useEffect(() => {
-        console.log(post);
         if(post) setPostData(post);
     }, [post]);
     
@@ -74,7 +81,7 @@ const Form = ({currentId, setCurrentId}) => {
                     label='Tags'
                     fullWidth
                     value={postData.tags}
-                    onChange={(e) => setPostData({...postData, tags: e.target.value})}  
+                    onChange={(e) => setPostData({...postData, tags: e.target.value.split(",")})}  
                 />
                 <div className={classes.fileInput}>
                     <FileBase
