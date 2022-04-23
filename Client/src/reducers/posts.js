@@ -14,5 +14,5 @@ export default (posts = [], action) => {
             return posts.filter((post) => post._id!==action.payload);
         default:
             return posts;
-    }
+    }      
 }
